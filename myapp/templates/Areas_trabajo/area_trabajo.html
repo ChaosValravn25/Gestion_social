@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<h1>Area de trabajo</h1>
+
+{% for area in areas_trabajo %}
+
+<h5>{{ area.titulo }}</h5>
+<ul>
+	<li>{{area.descripcion}}</li>
+	<li>Division: {{area.division.nombre}}</li>
+</ul>
+
+{% endfor %}
+
+{% endblock %}

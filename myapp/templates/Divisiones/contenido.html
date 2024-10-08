@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <!-- Título principal con centrado -->
+    <h1 class="text-center my-4">{{ division.nombre }}</h1>
+
+    <!-- Subtítulo con un poco de margen inferior -->
+    <h5 class="text-muted text-center mb-4">{{ division.nombre }}</h5>
+
+    <!-- Tarjeta para las áreas de trabajo -->
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Áreas de Trabajo</h4>
+            <ul class="list-group">
+                <!-- Iterar sobre las áreas de trabajo -->
+                {% for area in division.areatrabajo_set.all %}
+                <li class="list-group-item">
+                    <strong>{{ area.titulo }}:</strong> {{ area.descripcion }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <div class="text-center mt-4">
+        <a href="{% url 'divisiones' %}" class="btn btn-primary">Volver a Divisiones</a>
+    </div>
+</div>
+
+{% endblock %}
