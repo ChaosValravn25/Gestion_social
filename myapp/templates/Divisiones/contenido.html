@@ -1,33 +1,65 @@
 {% extends 'layouts/base.html' %}
 
+{% load custom_filters %}
+
 {% block content %}
-
 <div class="container">
-    <!-- Título principal con centrado -->
     <h1 class="text-center my-4">{{ division.nombre }}</h1>
+    <h5 class="text-muted text-center mb-4">{{ division.nombre }}</h5>		
 
-    <!-- Subtítulo con un poco de margen inferior -->
-    <h5 class="text-muted text-center mb-4">{{ division.nombre }}</h5>
-
-    <!-- Tarjeta para las áreas de trabajo -->
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Áreas de Trabajo</h4>
-            <ul class="list-group">
-                <!-- Iterar sobre las áreas de trabajo -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="card-title me-3">Áreas de Trabajo de {{ division.nombre }}</h4>
+                <a href="{% url 'crear_area' division.id %}" class="btn btn-success btn-sm">Agregar Área</a>
+            </div>
+
+            <ul class="list-group mb-4">
                 {% for area in division.areatrabajo_set.all %}
                 <li class="list-group-item">
-                    <strong>{{ area.titulo }}:</strong> {{ area.descripcion }}
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="flex-grow-1" style="margin-top: 5px;">
+                            <strong>{{ area.titulo }}</strong>
+                            <p class="mb-1">{{ area.descripcion }}</p>
+                        </div>
+                        <div>
+                            <a href="{% url 'crear_documento' area.id %}" class="btn btn-success btn-sm"> Agregar documento</a>
+                            <form action="{% url 'eliminar_area' area.id %}" method="post" style="display:inline;" onsubmit="return confirm('¿Está seguro de querer borrar esta área?');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm"> Eliminar área</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    {% if area.documentos.all %}
+                    <div class="mt-3">
+                        <ul>
+                            {% for doc in area.documentos.all %}
+                            <li>
+                                <strong>{{ doc.nombre_documento }}:</strong> {{ doc.descripcion_documento }} <br>
+                                {% if doc.documento.url|endswith:'.pdf' or doc.documento.url|endswith:'.png' or doc.documento.url|endswith:'.jpg' %}
+                                    <embed src="{{ doc.documento.url }}" type="application/pdf" width="100%" height="400px" />
+                                {% elif doc.documento.url|endswith:'.docx' or doc.documento.url|endswith:'.doc' %}
+                                    <iframe src="https://docs.google.com/gviewer?url={{ doc.documento.url }}&embedded=true" width="100%" height="400px"></iframe>
+                                {% endif %}
+                                <div class="mt-2 d-flex justify-content-start gap-2">
+                                    <a href="{{ doc.documento.url }}" class="btn btn-secondary" download>Descargar documento</a>
+                                    <form action="{% url 'eliminar_documento' doc.id %}" method="post" style="display:inline;" onsubmit="return confirm('¿Está seguro de querer borrar el documento?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                            </li><br>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% else %}
+                        <p class="mt-3 text-muted">No hay documentos asociados a esta área de trabajo.</p>
+                    {% endif %}
                 </li>
                 {% endfor %}
             </ul>
         </div>
     </div>
-
-    <!-- Botón de regreso -->
-    <div class="text-center mt-4">
-        <a href="{% url 'divisiones' %}" class="btn btn-primary">Volver a Divisiones</a>
-    </div>
 </div>
-
 {% endblock %}
