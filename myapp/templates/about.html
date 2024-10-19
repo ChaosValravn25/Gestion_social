@@ -1,10 +1,51 @@
 {% extends 'layouts/base.html' %}
 
+{% load static %}
+
 {% block content %}
+<div class="content-container container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center mb-4">Quiénes Somos - Gestión Social</h1>
+        </div>
+    </div>
+    
+    <div class="image-container text-center">
+        <img src="{% static 'Logo Bienestar.jpg' %}" alt="Logo Bienestar" class="img-fluid" style="max-width: 200px;">
+    </div>
 
-	<h1>Quienes somos - About</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="text-description mt-4">
+                <h2 class="text-center mb-3">Nuestra Misión</h2>
+                <p class="text-justify">
+                    En la Unidad de Gestión Social del Servicio de Salud del Maule, nuestra misión es velar por el bienestar integral de los funcionarios, 
+                    proporcionándoles un entorno de trabajo saludable, seguro y en equilibrio con sus vidas personales. Trabajamos con el compromiso de 
+                    garantizar que cada colaborador tenga acceso a servicios y herramientas que promuevan su desarrollo profesional y personal, facilitando 
+                    la conciliación de las responsabilidades laborales con las demandas familiares y personales. Nos esforzamos por crear un ambiente donde 
+                    el bienestar de los funcionarios sea nuestra prioridad, fortaleciendo un espacio de trabajo inclusivo, respetuoso y enfocado en el crecimiento.
+                </p>
 
-	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sapiente autem magnam dolores ullam quia saepe voluptatibus. Sint quo pariatur libero nulla iste tenetur laborum autem quam, molestiae perferendis asperiores provident facere iusto commodi officia. Quos ratione commodi excepturi dolorem, odit, est minus fugiat exercitationem cum fuga aliquam, voluptatem dignissimos voluptatibus accusamus doloremque delectus iure architecto perferendis omnis dolorum suscipit veritatis laudantium. Alias facilis possimus voluptates autem, facere cumque ducimus corporis at? Sit sint voluptas optio sequi, voluptates alias dolore laudantium modi voluptatem! Consequuntur obcaecati ipsa, eaque culpa repudiandae repellat quae natus explicabo tempora, eligendi ut aliquid quidem voluptas quam!</p>
+                <h2 class="text-center mb-3">Compromiso del Equipo de Trabajo</h2>
+                <p class="text-justify">
+                    Nuestro equipo está compuesto por profesionales dedicados y apasionados por el bienestar de los funcionarios del Servicio de Salud del Maule. 
+                    Nos comprometemos a ofrecer un servicio personalizado y cercano, con una visión proactiva que permita anticipar y satisfacer las necesidades 
+                    emergentes de los colaboradores. Cada miembro de nuestro equipo trabaja con dedicación y empatía, brindando soluciones que contribuyen a mejorar 
+                    la calidad de vida de nuestros compañeros de trabajo. Nuestro compromiso se refleja en cada una de nuestras acciones, siempre guiadas por los valores 
+                    de respeto, integridad y compromiso social.
+                </p>
 
+                <p class="text-justify">
+                    Como equipo, creemos firmemente en la importancia de construir una comunidad laboral donde cada persona se sienta valorada y apoyada. Nos comprometemos 
+                    a seguir desarrollando e implementando iniciativas innovadoras que respondan a las necesidades de nuestros funcionarios, asegurando que su bienestar 
+                    sea siempre una prioridad central. Nuestra labor es acompañar y guiar a cada colaborador en su camino hacia un equilibrio entre sus responsabilidades 
+                    laborales y personales, promoviendo un entorno donde puedan alcanzar su máximo potencial.
+                </p>
+            </div> 
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+
 
